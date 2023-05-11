@@ -1,10 +1,16 @@
-import styled
- from "styled-components";
+import styled from "styled-components";
+import { Routes } from "react-router-dom";
+import UserAccount from "./UserCreateForm";
+import CreateNewHero from "./HeroCreateForm";
+
 function App() {
   return (
-    <Div>
-      hello
-    </Div>
+    // <Routes >
+    <>
+      <UserAccount />
+      <CreateNewHero />
+    </>
+    // </Routes>
   );
 }
 
