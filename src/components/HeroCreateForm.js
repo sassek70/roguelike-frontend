@@ -16,7 +16,7 @@ const CreateNewHero = () => {
         // fetch(`${process.env.REACT_APP_BACKEND_URL}/Hero/user/{userId}/createhero`)
         
         //defualt user 1 for testing
-        fetch(`${process.env.REACT_APP_BACKEND_URL}/Hero/user/1/createhero`, {
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/Hero/1/createhero`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

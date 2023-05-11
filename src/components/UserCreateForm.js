@@ -3,8 +3,8 @@ import { useState } from "react"
 
 const UserAccount = () => {
     const [formData, setFormData] = useState({
-    userName: "", 
-        // password: ""
+        userName: "", 
+        password: ""
     })
 
     const handleChange = (e) => {
@@ -13,11 +13,11 @@ const UserAccount = () => {
         
         console.log(formData)
     }
-    console.log(`${process.env.REACT_APP_BACKEND_URL}/User/user/createuser`)
+    console.log(`${process.env.REACT_APP_BACKEND_URL}/createuser`)
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        fetch(`${process.env.REACT_APP_BACKEND_URL}/User/user/createuser`,{
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/createuser`,{
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -39,8 +39,8 @@ const UserAccount = () => {
             <label htmlFor="userName">Username:</label>
             <input type="text" value={formData.userName} name="userName" placeholder="Enter a userName" onChange={handleChange}></input>
 
-            {/* <label htmlFor="password">Password:</label> */}
-            {/* <input type="text" value={formData.password} name="password" placeholder="Enter a password" onChange={handleChange}></input> */}
+            <label htmlFor="password">Password:</label>
+            <input type="text" value={formData.password} name="password" placeholder="Enter a password" onChange={handleChange}></input>
         <button type="submt">Create Account</button>
         </form>
     )
