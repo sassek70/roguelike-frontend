@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Routes } from "react-router-dom";
 import UserAccount from "./UserCreateForm";
 import CreateNewHero from "./HeroCreateForm";
+import Login from "./LoginForm";
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
     <>
       <UserAccount />
       <CreateNewHero />
+      <Login />
     </>
     // </Routes>
   );
