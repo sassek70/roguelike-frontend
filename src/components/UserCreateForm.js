@@ -10,9 +10,8 @@ const UserAccount = () => {
     const handleChange = (e) => {
         const {name, value} = e.target
         setFormData({...formData, [name] : value})
-        
-        console.log(formData)
     }
+    
     console.log(`${process.env.REACT_APP_BACKEND_URL}/User/createuser`)
     const handleSubmit = (e) => {
         e.preventDefault()
