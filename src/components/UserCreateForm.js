@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 
-const UserAccount = () => {
+const UserCreateForm = () => {
     const [formData, setFormData] = useState({
         userName: "", 
         password: ""
@@ -48,4 +48,4 @@ const UserAccount = () => {
 
 }
 
-export default UserAccount
+export default UserCreateForm

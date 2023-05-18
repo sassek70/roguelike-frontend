@@ -1,18 +1,22 @@
 import styled from "styled-components";
-import { Routes } from "react-router-dom";
-import UserAccount from "./UserCreateForm";
+import { Route, Routes } from "react-router-dom";
+import UserCreateForm from "./UserCreateForm";
 import CreateNewHero from "./HeroCreateForm";
-import Login from "./LoginForm";
+import NavBar from "./Navbar";
+import Welcome from "./Welcome";
+import LoginForm from "./LoginForm";
 
 function App() {
   return (
-    // <Routes >
     <>
-      <UserAccount />
-      <CreateNewHero />
-      <Login />
+      <NavBar />
+        <Routes>
+          <Route path="/" element={<Welcome />}/>
+          <Route path="/newuser" element={<UserCreateForm />}/>
+          <Route path="/login" element={<LoginForm />}/>
+          <Route path="/newhero" element={<CreateNewHero />}/>
+        </Routes>
     </>
-    // </Routes>
   );
 }
 
