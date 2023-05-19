@@ -1,24 +1,40 @@
-import { render } from "@testing-library/react";
+import { createStoreHook as createStore} from "react-redux";
 
-
-const configureStore = () => {
-    let state;
-    
-    const dispatch = (action) => {
-        state = reducer(state, action);
-        render();
+const heroState = {
+    hero = {
+        UserId : 
+        HeroName: 
+        Class: 
+        HeroLevel: 
+        TotalHealth: 
+        CurrentHealth: 
+        TotalAttack: 
+        TotalDefense: 
+        TotalBattles: 
+        BattlesWon: 
+        Deaths: 
+        Coins: 
+        TotalEquippedWeaponSize: 
+        TotalEquippedArmorSize: 
+        EquippedWeaponId1: 
+        EquippedWeaponId2: 
+        EquippedArmorId1: 
+        EquippedArmorId2: 
+        EquippedArmorId3: 
+        CurrentZone: 
+        CurrentNode: 
+        DateLastPlayed: 
     }
 
-    const getState = () => {
-        return state;
-    }
+}
 
-    return {
-        dispatch,
-        getState
+const reducer = (state, action) {
+    switch(action.type) {
+        case "updateHeroHealth" :
+            ...state,
+            CurrentHealth: action.payload
+        }
     }
 }
 
-// const reducer = (state = ) =>{
-
-}
+const store = createStore(reducer)
