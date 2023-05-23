@@ -26,7 +26,10 @@ const UserCreateForm = () => {
         })
         .then(res => {
             if(res.ok) {
-                res.json().then(data => console.log(data))
+                res.json().then(data => {
+                    localStorage.setItem("uid", data.token)
+                    console.log(data)
+                })
             } else {
                 res.json().then(errors => console.log(errors))
             }

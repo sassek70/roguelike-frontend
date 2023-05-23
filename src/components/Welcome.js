@@ -1,7 +1,15 @@
 import { configureStore, createStore } from "@reduxjs/toolkit";
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
 
 const Welcome = () => {
+
+    const {currentUser, setCurrentUser} = useContext(UserContext)
+
+
+
+    console.log(currentUser)
 
     const heroState = {
             UserId : 2,
@@ -31,7 +39,7 @@ const Welcome = () => {
     const reducer = (state = heroState, action) => {
         switch(action.type) {
             case "updateHeroHealth":
-                console.log({...state, CurrentHealth: action.payload})
+                // console.log({...state, CurrentHealth: action.payload})
                 return {...state, CurrentHealth: action.payload}
             case "test":
                 console.log(action.payload)
@@ -46,7 +54,8 @@ const Welcome = () => {
     store.dispatch({ type: "updateHeroHealth", payload: 444})
 
     return (
-        <></>
+        <>
+        </>
     )
 }
 
