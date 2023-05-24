@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import heroHealthReducer from "./heroHealthSlice";
+import heroReducer from "./heroSlice";
 import currentUserReducer from "./UserSlice"
 
 
 export const store = configureStore({
     reducer: {
         currentUser: currentUserReducer,
-        heroHealth: heroHealthReducer,
+        hero: heroReducer,
 
     }
 })

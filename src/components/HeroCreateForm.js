@@ -1,7 +1,11 @@
 import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { setHero } from "../redux/heroSlice";
 
 
 const CreateNewHero = () => {
+    const currentUser = useSelector(state => state.currentUser)
+    const dispatch = useDispatch();
     const [formData, setFormData] = useState({heroName: "", class: ""})
 
 
@@ -16,7 +20,7 @@ const CreateNewHero = () => {
         // fetch(`${process.env.REACT_APP_BACKEND_URL}/Hero/user/{userId}/createhero`)
         
         //defualt user 1 for testing
-        fetch(`${process.env.REACT_APP_BACKEND_URL}/Hero/1/createhero`, {
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/Hero/${currentUser.userId}/createhero`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -26,7 +30,10 @@ const CreateNewHero = () => {
         })
         .then(res => {
             if(res.ok) {
-                res.json().then(data => console.log(data))
+                res.json().then(data => {
+                    console.log(data)
+                    dispatch(setHero(data))
+                })
             } else {
                 res.json().then(errors => console.log(errors))
             }
