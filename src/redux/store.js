@@ -1,5 +1,15 @@
-// import { createStoreHook as createStore} from "react-redux";
+import { configureStore } from "@reduxjs/toolkit";
+import heroReducer from "./heroSlice";
+import currentUserReducer from "./UserSlice"
 
+
+export const store = configureStore({
+    reducer: {
+        currentUser: currentUserReducer,
+        hero: heroReducer,
+
+    }
+})
 // const heroState = {
 //         UserId : 2,
 //         HeroName: 2,

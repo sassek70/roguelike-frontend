@@ -11,9 +11,8 @@ const LoginForm = () => {
         const {name, value} = e.target
         setFormData({...formData, [name] : value})
         
-        console.log(formData)
     }
-    console.log(`${process.env.REACT_APP_BACKEND_URL}/createuser`)
+    
     const handleSubmit = (e) => {
         e.preventDefault()
 
@@ -29,7 +28,7 @@ const LoginForm = () => {
             if(res.ok) {
                 res.json().then(data => {
                     localStorage.setItem("uid", data.token)
-                    console.log(data)})
+                })
             } else {
                 res.json().then(errors => console.log(errors))
             }

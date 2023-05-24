@@ -1,52 +1,65 @@
-import { configureStore, createStore } from "@reduxjs/toolkit";
+// import { configureStore, createStore } from "@reduxjs/toolkit";
+// import { useContext, useEffect } from "react";
+// import { UserContext } from "../context/UserContext";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setCurrentUser } from "../redux/UserSlice";
+import { loseHealth, gainHealth } from "../redux/heroSlice";
 
 
 const Welcome = () => {
 
-    const heroState = {
-            UserId : 2,
-            HeroName: 2,
-            Class: 2,
-            HeroLevel: 2,
-            TotalHealth: 2,
-            CurrentHealth: 2,
-            TotalAttack: 2,
-            TotalDefense: 2,
-            TotalBattles: 2,
-            BattlesWon: 2,
-            Deaths: 2,
-            Coins: 2,
-            TotalEquippedWeaponSize: 2,
-            TotalEquippedArmorSize: 2,
-            EquippedWeaponId1: 2,
-            EquippedWeaponId2: 2,
-            EquippedArmorId1: 2,
-            EquippedArmorId2: 2,
-            EquippedArmorId3: 2,
-            CurrentZone: 2,
-            CurrentNode: 2,
-            DateLastPlayed: 2
-    }
-    
-    const reducer = (state = heroState, action) => {
-        switch(action.type) {
-            case "updateHeroHealth":
-                console.log({...state, CurrentHealth: action.payload})
-                return {...state, CurrentHealth: action.payload}
-            case "test":
-                console.log(action.payload)
-                break;
-            default: 
-                return state;
+    const currentUser = useSelector(state => state.currentUser)
+    const hero = useSelector(state => state.hero)
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (localStorage.uid && currentUser === null) {
+          fetch(`${process.env.REACT_APP_BACKEND_URL}/Auth/existingtoken`, {
+            method: 'POST',
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            },
+            body: JSON.stringify(localStorage.uid)
+          })
+          .then(res => {if(res.ok) {
+            res.json()
+            .then(user => {
+                localStorage.setItem("uid", user.token)
+                dispatch(setCurrentUser({
+                    userId: user.userId,
+                    username: user.username,
+                }))
+                navigate('/')
             }
-        }
-    
-    const store = createStore(reducer)
-    
-    store.dispatch({ type: "updateHeroHealth", payload: 444})
+          )}
+        })
+      } else {
+        // setGuestUser(parseInt(Math.random() * ((100000 - 1000) + 1000)))
+        console.log('No User Found');
+        navigate('/')
+      };
+      },[])
+
+      console.log(hero)
+
+      const testHeroDamage = () => {
+        dispatch(gainHealth(hero, 5))
+      }
+
+      const testHeroHeal = () => {
+        dispatch(loseHealth(hero, 5))
+      }
 
     return (
-        <></>
+        <>
+        <h1>{hero.currentHealth}</h1>
+        <button onClick={() => testHeroDamage()}>Deal 5 damage</button>
+        <button onClick={() => testHeroHeal()}>heal 5 damage</button>
+        </>
     )
 }
 
