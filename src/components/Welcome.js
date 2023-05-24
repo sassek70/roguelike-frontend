@@ -56,7 +56,7 @@ const Welcome = () => {
 
     return (
         <>
-        <h1>{hero.currentHealth}</h1>
+        {hero? <h1>{hero.currentHealth}</h1> : <></>}
         <button onClick={() => testHeroDamage()}>Deal 5 damage</button>
         <button onClick={() => testHeroHeal()}>heal 5 damage</button>
         </>
