@@ -1,12 +1,16 @@
+import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
+import { setCurrentUser } from "../redux/UserSlice";
 
 
 const NavBar = () => {
 
     const navigate = useNavigate()
+    const dispatch = useDispatch();
 
     const userLogOut = () => {
         localStorage.removeItem("uid")
+        dispatch(setCurrentUser(null))
         navigate("/")
     }
 
