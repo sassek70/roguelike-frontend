@@ -56,18 +56,25 @@ export const heroSlice = createSlice({
             return state
         },
         loseHealth: (state, action) => {
-            // const updatedHero = {...state}
+            const updatedHero = {...state,
+                currentHealth: action.payload
+            }
+            return updatedHero
             // updatedHero.CurrentHealth = action
             // let newHealth = state.CurrentHealth - action.payload
-            // const updated = {...state, CurrentHealth: newHealth}
-            state.currentHealth = action.payload
+            // const updated = {...state, CurrentHealth: action.payload}
+            // return updated
+            // state.currentHealth = state.currentHealth - action.payload
             // console.log(state.currentHealth, action.payload, updated, newHealth )
             // console.log(state)
             // setHero(...heroSlice, updated)
         },
         gainHealth: (state, action) => {
             // return state.CurrentHealth + action.payload
-            state.currentHealth = state.currentHealth + action.payload
+            const updatedHero = {...state,
+                currentHealth: action.payload
+            }
+            return updatedHero
 
             // return {...state, CurrentHealth: state.CurrentHealth += action.payload}
 

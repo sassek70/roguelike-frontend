@@ -46,14 +46,14 @@ const Welcome = () => {
 
       console.log(hero)
 
-      const testHeroDamage = () => {
-        console.log(hero.currentHealth)
-        let newHealth = hero.currentHealth - 5
-        dispatch(loseHealth(hero, newHealth))
+      const testHeroDamage = (damage = 5) => {
+        const newHealth = hero.currentHealth - damage
+        dispatch(loseHealth(newHealth))
       }
 
-      const testHeroHeal = () => {
-        dispatch(gainHealth(hero.currentHealth, {payload: 5}))
+      const testHeroHeal = (healing = 5) => {
+        const newHealth = hero.currentHealth + healing
+        dispatch(gainHealth(newHealth))
       }
 
     return (
