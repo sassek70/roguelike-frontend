@@ -26,7 +26,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const heroSlice = createSlice({
     name: 'hero',
-    initialState: null,
+    initialState: {},
     // initialState: {
     //     HeroName: null,
     //     Class: null,
@@ -60,12 +60,15 @@ export const heroSlice = createSlice({
             // updatedHero.CurrentHealth = action
             // let newHealth = state.CurrentHealth - action.payload
             // const updated = {...state, CurrentHealth: newHealth}
-            state.currentHealth = state.currentHealth - action.payload
-            // console.log(state, action )
+            state.currentHealth = action.payload
+            // console.log(state.currentHealth, action.payload, updated, newHealth )
+            // console.log(state)
             // setHero(...heroSlice, updated)
         },
         gainHealth: (state, action) => {
             // return state.CurrentHealth + action.payload
+            state.currentHealth = state.currentHealth + action.payload
+
             // return {...state, CurrentHealth: state.CurrentHealth += action.payload}
 
         },
