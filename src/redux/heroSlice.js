@@ -26,41 +26,57 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const heroSlice = createSlice({
     name: 'hero',
-    initialState: {
-        HeroName: null,
-        Class: null,
-        HeroLevel: null,
-        TotalHealth: null,
-        CurrentHealth: null,
-        TotalAttack: null,
-        TotalDefense: null,
-        TotalBattles: null,
-        BattlesWon: null,
-        Deaths: null,
-        Coins: null,
-        TotalEquippedWeaponSize: null,
-        TotalEquippedArmorSize: null,
-        EquippedWeaponId1: null,
-        EquippedWeaponId2: null,
-        EquippedArmorId1: null,
-        EquippedArmorId2: null,
-        EquippedArmorId3: null,
-        CurrentZone: null,
-        CurrentNode: null,
-        DateLastPlayed:null,
-    },
+    initialState: {},
+    // initialState: {
+    //     HeroName: null,
+    //     Class: null,
+    //     HeroLevel: null,
+    //     TotalHealth: null,
+    //     CurrentHealth: null,
+    //     TotalAttack: null,
+    //     TotalDefense: null,
+    //     TotalBattles: null,
+    //     BattlesWon: null,
+    //     Deaths: null,
+    //     Coins: null,
+    //     TotalEquippedWeaponSize: null,
+    //     TotalEquippedArmorSize: null,
+    //     EquippedWeaponId1: null,
+    //     EquippedWeaponId2: null,
+    //     EquippedArmorId1: null,
+    //     EquippedArmorId2: null,
+    //     EquippedArmorId3: null,
+    //     CurrentZone: null,
+    //     CurrentNode: null,
+    //     DateLastPlayed:null,
+    // },
     reducers: {
         setHero: (state, action) => {
             state = action.payload
             return state
         },
         loseHealth: (state, action) => {
-            const updated = {...state, CurrentHealth: state.CurrentHealth - action.payload}
-            return updated
+            const updatedHero = {...state,
+                currentHealth: action.payload
+            }
+            return updatedHero
+            // updatedHero.CurrentHealth = action
+            // let newHealth = state.CurrentHealth - action.payload
+            // const updated = {...state, CurrentHealth: action.payload}
+            // return updated
+            // state.currentHealth = state.currentHealth - action.payload
+            // console.log(state.currentHealth, action.payload, updated, newHealth )
+            // console.log(state)
+            // setHero(...heroSlice, updated)
         },
         gainHealth: (state, action) => {
             // return state.CurrentHealth + action.payload
-            return {...state, CurrentHealth: state.CurrentHealth + action.payload}
+            const updatedHero = {...state,
+                currentHealth: action.payload
+            }
+            return updatedHero
+
+            // return {...state, CurrentHealth: state.CurrentHealth += action.payload}
 
         },
     }

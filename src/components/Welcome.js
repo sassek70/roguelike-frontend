@@ -46,17 +46,19 @@ const Welcome = () => {
 
       console.log(hero)
 
-      const testHeroDamage = () => {
-        dispatch(gainHealth(hero, 5))
+      const testHeroDamage = (damage = 5) => {
+        const newHealth = hero.currentHealth - damage
+        dispatch(loseHealth(newHealth))
       }
 
-      const testHeroHeal = () => {
-        dispatch(loseHealth(hero, 5))
+      const testHeroHeal = (healing = 5) => {
+        const newHealth = hero.currentHealth + healing
+        dispatch(gainHealth(newHealth))
       }
 
     return (
         <>
-        <h1>{hero.currentHealth}</h1>
+        {hero? <h1>{hero.currentHealth}</h1> : <></>}
         <button onClick={() => testHeroDamage()}>Deal 5 damage</button>
         <button onClick={() => testHeroHeal()}>heal 5 damage</button>
         </>

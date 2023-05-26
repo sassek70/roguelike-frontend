@@ -5,6 +5,7 @@ export const currentUserSlice = createSlice({
     initialState: null,
     reducers: {
         setCurrentUser: (state, action) => {
+            console.log(action)
             const user = {...action.payload}
             return (user)
         },
