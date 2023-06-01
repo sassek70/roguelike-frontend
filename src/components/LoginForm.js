@@ -1,7 +1,9 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 
 const LoginForm = () => {
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         userName: "", 
         password: ""
@@ -28,6 +30,9 @@ const LoginForm = () => {
             if(res.ok) {
                 res.json().then(data => {
                     localStorage.setItem("uid", data.token)
+                    console.log(data)
+                    navigate('/')
+                    
                 })
             } else {
                 res.json().then(errors => console.log(errors))

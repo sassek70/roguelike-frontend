@@ -1,26 +1,27 @@
 import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import { setCurrentUser } from "../redux/UserSlice";
-
+import { setCurrentUser, removeCurrentUser } from "../redux/UserSlice";
+import { useSelector } from "react-redux";
 
 const NavBar = () => {
-
+    const currentUser = useSelector(state => state.currentUser)
     const navigate = useNavigate()
     const dispatch = useDispatch();
 
     const userLogOut = () => {
         localStorage.removeItem("uid")
-        dispatch(setCurrentUser(null))
+        dispatch(removeCurrentUser(null))
         navigate("/")
     }
-
+    
+    console.log(currentUser)
     return (
         <>
+            {currentUser? <h3>{currentUser.username}</h3> : <h3>Please log in</h3>}
             <NavLink to="/" name="Home">Home</NavLink>
             <NavLink to="/newuser" name="Create-Account">Create Account</NavLink>
-            <NavLink to="/login" name="Login">Login</NavLink>
+            {currentUser && currentUser != null ? <button onClick={() => userLogOut()}>Logout</button> :  <NavLink to="/login" name="Login">Login</NavLink>}
             <NavLink to="/newhero" name="New-Hero">New Hero</NavLink>
-            <button onClick={() => userLogOut()}>Logout</button>
         </>
     )
 }
