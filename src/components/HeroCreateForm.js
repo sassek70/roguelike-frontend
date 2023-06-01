@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { setHero } from "../redux/heroSlice";
+import { loadHero } from "../redux/loadStatusSlice";
+import { setHeroCombatState } from "../redux/combatSlice";
 
 
 const CreateNewHero = () => {
@@ -31,8 +33,15 @@ const CreateNewHero = () => {
         .then(res => {
             if(res.ok) {
                 res.json().then(data => {
-                    console.log(data)
                     dispatch(setHero(data))
+                    dispatch(loadHero())
+                    dispatch(setHeroCombatState({
+                        hero: {
+                            heroHealth: data.currentHealth,
+                            heroAttack: data.totalAttack,
+                            herodefense: data.totalDefense,
+                        }
+                    }))
                 })
             } else {
                 res.json().then(errors => console.log(errors))

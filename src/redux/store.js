@@ -1,12 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import heroReducer from "./heroSlice";
 import currentUserReducer from "./UserSlice"
+import loadStatusReducer from "./loadStatusSlice"
+import combatReducer from "./combatSlice";
 
 
 export const store = configureStore({
     reducer: {
         currentUser: currentUserReducer,
         hero: heroReducer,
+        loaded: loadStatusReducer,
+        combatState: combatReducer,
 
     }
 })
