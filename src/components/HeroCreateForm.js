@@ -18,10 +18,6 @@ const CreateNewHero = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // use this fetch when user state is added
-        // fetch(`${process.env.REACT_APP_BACKEND_URL}/Hero/user/{userId}/createhero`)
-        
-        //defualt user 1 for testing
         fetch(`${process.env.REACT_APP_BACKEND_URL}/Hero/${currentUser.userId}/createhero`, {
             method: "POST",
             headers: {
@@ -39,7 +35,7 @@ const CreateNewHero = () => {
                         hero: {
                             heroHealth: data.currentHealth,
                             heroAttack: data.totalAttack,
-                            herodefense: data.totalDefense,
+                            heroDefense: data.totalDefense,
                         }
                     }))
                 })
@@ -49,9 +45,6 @@ const CreateNewHero = () => {
         })
         
     }
-    // const fetchHeroes = () => {
-        // fetch(`http://localhost:5263/User/user/createuser`)
-    // }
 
 
     return (

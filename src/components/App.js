@@ -8,6 +8,7 @@ import LoginForm from "./LoginForm";
 import { useEffect } from "react";
 import { setCurrentUser } from "../redux/UserSlice";
 import { useSelector, useDispatch } from "react-redux";
+import Gameboard from "./Gameboard";
 
 
 
@@ -53,6 +54,7 @@ function App() {
           <Route path="/newuser" element={<UserCreateForm />}/>
           <Route path="/login" element={<LoginForm />}/>
           <Route path="/newhero" element={<CreateNewHero />}/>
+          <Route path="/game" element={<Gameboard />}/>
         </Routes>
     </>
   );

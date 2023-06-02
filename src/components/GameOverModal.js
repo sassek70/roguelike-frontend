@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { heroDeathCount, setHero } from "../redux/heroSlice";
 import { loadHero, unloadHero } from "../redux/loadStatusSlice";
+import { setHeroCombatState } from "../redux/combatSlice";
 // import { ReactDOM } from "react-dom";
 
 
@@ -13,9 +14,9 @@ const GameOverModal = ({displayModal, setDisplayModal, saveHeroToDatabase}) => {
 
     if(!displayModal) return null;
 
-    const handleRestart = () => {
-        saveHeroToDatabase()
-        fetch(`${process.env.REACT_APP_BACKEND_URL}/Hero/${currentUser.userId}/load/${hero.id}`, {
+    const handleRestart = async () => {
+        await saveHeroToDatabase()
+        await fetch(`${process.env.REACT_APP_BACKEND_URL}/Hero/${currentUser.userId}/load/${hero.id}`, {
             method: "GET",
             headers: {
                 "Content-Type" : "application/json",
@@ -25,16 +26,21 @@ const GameOverModal = ({displayModal, setDisplayModal, saveHeroToDatabase}) => {
         .then(res => {
             if(res.ok){
                 res.json().then(data => {
-                    dispatch(setHero(data))
-                    dispatch(heroDeathCount())
+                    dispatch(setHeroCombatState({
+                        hero: {
+                            heroHealth: data.currentHealth,
+                            heroAttack: data.totalAttack,
+                            heroDefense: data.totalDefense,
+                        }
+                    }))
                     dispatch(loadHero())
                     setDisplayModal(false)
-                    navigate("/")
+                    // navigate("/game")
             })
-        } else {
-            res.json().then(errors => console.log(errors))
-        }
-    })
+            } else {
+             res.json().then(errors => console.log(errors))
+            }
+        })
     }
 
     const handleQuit = () => {

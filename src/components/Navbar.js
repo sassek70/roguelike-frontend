@@ -22,6 +22,7 @@ const NavBar = () => {
             <NavLink to="/newuser" name="Create-Account">Create Account</NavLink>
             {currentUser && currentUser != null ? <button onClick={() => userLogOut()}>Logout</button> :  <NavLink to="/login" name="Login">Login</NavLink>}
             <NavLink to="/newhero" name="New-Hero">New Hero</NavLink>
+            <NavLink to="/game" name="Game">Play Game</NavLink>
         </>
     )
 }
