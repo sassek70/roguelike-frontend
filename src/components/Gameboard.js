@@ -25,12 +25,15 @@ const Gameboard = () => {
     // },[])
    
         // console.log(hero)
-        console.log(combatState)
+        // console.log(combatState)
         // console.log(combatState.hero.hero.heroHealth)
         // console.log(currentUser)
   
         const heroDamage = (damage = 5) => {
-          const newHealth = combatState.heroHealth - damage
+          console.log(hero)
+          let currentHeroHealth = hero.currentHealth
+          let newHealth = currentHeroHealth - damage
+          console.log(newHealth)
           if(newHealth > 0){
             dispatch(heroLoseHealth(newHealth))
           } else {
@@ -45,7 +48,8 @@ const Gameboard = () => {
  
         const heroHealCombatSlice = (healing = 5) => {
           // const newHealth = hero.currentHealth + healing
-          const newHealth = combatState.heroHealth + healing
+          let currentHeroHealth = combatState.heroHealth
+          let newHealth = currentHeroHealth + healing
           dispatch(heroGainHealth(newHealth))
         }
   
