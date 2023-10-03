@@ -1,7 +1,12 @@
 import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { setCurrentUser } from "../redux/UserSlice";
+
 
 
 const UserCreateForm = () => {
+    const dispatch = useDispatch()
+
     const [formData, setFormData] = useState({
         userName: "", 
         password: ""
@@ -27,7 +32,9 @@ const UserCreateForm = () => {
             if(res.ok) {
                 res.json().then(data => {
                     localStorage.setItem("uid", data.token)
+                    dispatch(setCurrentUser(data.username))
                     console.log(data)
+                    console.log(data.username)
                 })
             } else {
                 res.json().then(errors => console.log(errors))

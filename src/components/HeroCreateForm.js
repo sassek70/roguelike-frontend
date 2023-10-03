@@ -32,11 +32,9 @@ const CreateNewHero = () => {
                     dispatch(setHero(data))
                     dispatch(loadHero())
                     dispatch(setHeroCombatState({
-                        hero: {
                             heroHealth: data.currentHealth,
                             heroAttack: data.totalAttack,
                             heroDefense: data.totalDefense,
-                        }
                     }))
                 })
             } else {

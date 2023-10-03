@@ -11,16 +11,13 @@ export const combatSlice = createSlice({
             return {...state, ...action.payload}
         },
         heroLoseHealth: (state, action) => {
-            const updatedHero = {...state, hero: {
-                    ...state,
-                    heroHealth: action.payload
-            }}
+            const updatedHero = {...state, ...action.payload
+            }
             return updatedHero
         },
         heroGainHealth: (state, action) => {
-            const updatedHero = {...state, hero: {
-                ...state, heroHealth: action.payload
-            }}
+            const updatedHero = {...state, ...action.payload
+            }
             return updatedHero
         },
     }

@@ -30,7 +30,7 @@ const Gameboard = () => {
         // console.log(currentUser)
   
         const heroDamage = (damage = 5) => {
-          const newHealth = combatState.hero.heroHealth - damage
+          const newHealth = combatState.heroHealth - damage
           if(newHealth > 0){
             dispatch(heroLoseHealth(newHealth))
           } else {
@@ -45,7 +45,7 @@ const Gameboard = () => {
  
         const heroHealCombatSlice = (healing = 5) => {
           // const newHealth = hero.currentHealth + healing
-          const newHealth = combatState.hero.heroHealth + healing
+          const newHealth = combatState.heroHealth + healing
           dispatch(heroGainHealth(newHealth))
         }
   
@@ -74,12 +74,10 @@ const Gameboard = () => {
   
         const createEnemyTest = () => {
           dispatch(setEnemyCombatState({
-            enemy: {
               enemyHealth: 40,
               enemyAttack: 2,
               enemyDefense: 3
-            }
-          }))
+            }))
         }
     
     
@@ -88,9 +86,9 @@ const Gameboard = () => {
         {loaded === true ? 
           <div>
             <h1>Stats</h1>
-            <h3>{combatState.hero.heroHealth} / {hero.totalHealth}</h3>
-            <h3>Attack:{combatState.hero.heroAttack}</h3>
-            <h3>Defense: {combatState.hero.heroDefense}</h3>
+            <h3>{combatState.heroHealth} / {hero.totalHealth}</h3>
+            <h3>Attack:{combatState.heroAttack}</h3>
+            <h3>Defense: {combatState.heroDefense}</h3>
             <h3>Deaths: {hero.deaths}</h3>
             <h3>Coins: {hero.coins}</h3>
             <h3>Zone: {hero.currentZone} World: {hero.currentNode}</h3>
