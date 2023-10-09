@@ -2,19 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const combatSlice = createSlice({
     name: 'combat',
-    initialState: {
-        // hero: {
-        //     heroHealth: 0,
-        //     heroAttack: 0,
-        //     heroDefense: 0,
-        // },
-        // enemy :{
-        //     enemyHealth: 0,
-        //     enemyAttack: 0,
-        //     enemyDefense: 0,
-        // },
-    },
-    
+    initialState: {},
     reducers: {
         setHeroCombatState: (state, action) => {
             return {...action.payload}
@@ -22,29 +10,15 @@ export const combatSlice = createSlice({
         setEnemyCombatState: (state, action) => {
             return {...state, ...action.payload}
         },
-        loseHealth: (state, action) => {
-            const updatedHero = {...state,
-                heroHealth: action.payload
+        heroLoseHealth: (state, action) => {
+            const updatedHero = {...state, ...action.payload
             }
-            // const newHeroHealth = state.currentHealth - action.payload
-
-            // const updatedHeroLogic = {
-            //     ...state,
-            //     currentHealth: newHeroHealth
-            // }
             return updatedHero
-            // return updatedHeroLogic
-
         },
         heroGainHealth: (state, action) => {
-            // return state.CurrentHealth + action.payload
-
-            const updatedHero = {...state, hero: {
-                ...state, heroHealth: action.payload
-            }}
-            console.log(state)
+            const updatedHero = {...state, ...action.payload
+            }
             return updatedHero
-            // return {...state, CurrentHealth: state.CurrentHealth += action.payload}
         },
     }
 })

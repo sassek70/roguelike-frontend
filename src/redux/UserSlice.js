@@ -5,9 +5,9 @@ export const currentUserSlice = createSlice({
     initialState: null,
     reducers: {
         setCurrentUser: (state, action) => {
-            console.log(action)
-            const user = {...action.payload}
-            return (user)
+            // console.log(action)
+            // const user = {...action.payload}
+            return {...state, ...action.payload}
         },
         removeCurrentUser: (state, action) => {
             return state = null

@@ -17,11 +17,12 @@ const NavBar = () => {
     console.log(currentUser)
     return (
         <>
-            {currentUser? <h3>{currentUser.username}</h3> : <h3>Please log in</h3>}
+            <div>Welcome Back: {currentUser? <h3>{currentUser.username}</h3> : <h3>Please log in</h3>}</div>
             <NavLink to="/" name="Home">Home</NavLink>
             <NavLink to="/newuser" name="Create-Account">Create Account</NavLink>
             {currentUser && currentUser != null ? <button onClick={() => userLogOut()}>Logout</button> :  <NavLink to="/login" name="Login">Login</NavLink>}
             <NavLink to="/newhero" name="New-Hero">New Hero</NavLink>
+            <NavLink to="/game" name="Game">Play Game</NavLink>
         </>
     )
 }
