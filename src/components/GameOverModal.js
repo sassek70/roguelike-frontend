@@ -27,14 +27,13 @@ const GameOverModal = ({displayModal, setDisplayModal, saveHeroToDatabase}) => {
             if(res.ok){
                 res.json().then(data => {
                     dispatch(setHeroCombatState({
-                        hero: {
                             heroHealth: data.currentHealth,
                             heroAttack: data.totalAttack,
                             heroDefense: data.totalDefense,
-                        }
                     }))
                     dispatch(loadHero())
                     setDisplayModal(false)
+                    console.log(data)
                     // navigate("/game")
             })
             } else {

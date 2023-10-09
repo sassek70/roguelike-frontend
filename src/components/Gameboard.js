@@ -39,6 +39,7 @@ const Gameboard = () => {
             dispatch(loseHealth(newHealth))
           } else {
             setIsAlive(false)
+            dispatch(loseHealth(newHealth))
             dispatch(heroDeathCount())
             // alert(`Hero has been killed, Hero has died ${hero.deaths + 1} times`)
             setDisplayModal(true)
@@ -103,12 +104,17 @@ const Gameboard = () => {
             <h3>Zone: {hero.currentZone} World: {hero.currentNode}</h3>
           </div>
             :
-            <></>
-            }
-        <button onClick={() => heroDamage(10)}>Deal damage</button>
+          <h3>Loading...</h3>
+        }
+        {isAlive ?
+        <>
+          <button onClick={() => heroDamage(10)}>Deal damage</button>
+          <button onClick={() => heroHeal(3)}>Heal hero</button>
+        </>
+          :
+          <GameOverModal displayModal={displayModal} setDisplayModal={setDisplayModal} saveHeroToDatabase={saveHeroToDatabase}/>
+      }
         {/* <button onClick={() => testHeroHeal(3)}>Heal hero</button> */}
-        <button onClick={() => heroHeal(3)}>Heal hero</button>
-        <GameOverModal displayModal={displayModal} setDisplayModal={setDisplayModal} saveHeroToDatabase={saveHeroToDatabase}/>
         <button onClick={() => saveHeroToDatabase()}>testsave</button>
         <button onClick={() => createEnemyTest()}>create enemy combat state</button></>
     )
