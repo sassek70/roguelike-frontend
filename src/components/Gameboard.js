@@ -47,7 +47,7 @@ const Gameboard = () => {
         }
   
  
-        const heroHealCombatSlice = (healing = 5) => {
+        const heroHeal = (healing = 5) => {
           // const newHealth = hero.currentHealth + healing
           let currentHeroHealth = hero.currentHealth
           let newHealth = currentHeroHealth + healing
@@ -107,7 +107,7 @@ const Gameboard = () => {
             }
         <button onClick={() => heroDamage(10)}>Deal damage</button>
         {/* <button onClick={() => testHeroHeal(3)}>Heal hero</button> */}
-        <button onClick={() => heroHealCombatSlice(3)}>Heal hero</button>
+        <button onClick={() => heroHeal(3)}>Heal hero</button>
         <GameOverModal displayModal={displayModal} setDisplayModal={setDisplayModal} saveHeroToDatabase={saveHeroToDatabase}/>
         <button onClick={() => saveHeroToDatabase()}>testsave</button>
         <button onClick={() => createEnemyTest()}>create enemy combat state</button></>
